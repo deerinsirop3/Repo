@@ -15,6 +15,7 @@ double excentricToTrue(double E)
 	Нулевая итерация : 𝐸(0) = 𝑀,
 	Точность вычисления : | 𝐸(𝑘 + 1)− 𝐸(𝑘) | < 𝜀
 	/**/
+//проверка
 double iterationMethod(double Enext, double Enow, double M)
 {
 
