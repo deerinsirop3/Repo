@@ -171,9 +171,9 @@ public:
 
 	Car();
 
-	void getProbeg(int newProbeg) // metod
+	void getkm(int km) // metod
 	{
-		km = newProbeg;
+		km = km;
 	}
 	void getMass(int newMass)
 	{
@@ -200,7 +200,7 @@ public:
 
 		: Vehicle(NumberOfRegistration, circleCount, passengersCount), gruzzCount(gruzz) {}
 
-	void setAxis(int gruzz)
+	void setgruzz(int gruzz)
 	{
 		gruzzCount = gruzz;
 	}
@@ -210,7 +210,7 @@ public:
 		height = newHeight;
 	}
 
-	void  getAxis()
+	void  getgruzz()
 	{
 		cout << gruzzCount;
 	}
