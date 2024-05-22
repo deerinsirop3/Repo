@@ -1,0 +1,181 @@
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <Windows.h>
+using namespace std;
+
+
+
+class Matrix
+{
+protected:
+    int rows, colums;
+public:
+    int** data;
+    int a;
+    int b;
+    Matrix(int rows, int colums) :rows(rows), colums(colums)
+    {
+
+        data = (int**)malloc(rows * sizeof(int*)); //создаем массив ровс на колумс
+        for (int i = 0; i < rows; i++) //освобождаем место для строк
+        {
+            data[i] = (int*)malloc(colums * sizeof(int)); //освобождаем место для колонок
+        }
+        a = rows;
+        b = colums;
+    }
+
+    int GetData(int i, int j) {
+        return data[i][j];
+    }
+
+
+    int& operator[](int indexRows) //перегрузка оператора [] (ок)
+    {
+        return *data[indexRows];
+
+    }
+
+    void Rand() //делаем функцию рандом для заполнения массива рандомными числами (ok)
+    {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < colums; j++)
+            {
+                data[i][j] = rand() % 10;
+            }
+        }
+    }
+
+    void print() //функция для вывода (Ок)
+    {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < colums; j++)
+            {
+                cout << data[i][j] << "\t";
+            }
+        }
+    }
+
+    int& operator () (int m, int n)// чивооо
+    {
+        return this->data[m][n];
+    }
+
+    Matrix operator + (Matrix R)
+    {
+        if (a == R.a && b == R.b)
+        {
+            Matrix temp(a, b);
+            for (int i = 0; i < R.a; i++) {
+                for (int j = 0; j < R.b; j++) {
+                    temp(i, j) = R.GetData(i, j) + data[i][j];
+                }
+            }return;
+        }return R;
+    }
+
+    Matrix operator - (Matrix R)
+    {
+        if (a == R.a && b == R.b)
+        {
+            Matrix temp(a, b);
+            for (int i = 0; i < R.a; i++) {
+                for (int j = 0; j < R.b; j++) {
+                    temp(i, j) = -(R.GetData(i, j) - data[i][j]);
+                }
+            }return;
+        }return R;
+    }
+
+    Matrix operator += (Matrix& R)
+    {
+        if (a == R.a && b == R.b)
+        {
+            Matrix temp(R.a, R.b);
+            for (int i = 0; i < R.a; i++) {
+                for (int j = 0; j < R.b; j++) {
+                    R(i, j) += data[i][j];
+                }
+            }return R;
+        }return R;
+    }
+
+    Matrix operator -= (Matrix& R)
+    {
+        if (a == R.a && b == R.b)
+        {
+            Matrix temp(R.a, R.b);
+            for (int i = 0; i < R.a; i++) {
+                for (int j = 0; j < R.b; j++) {
+                    R(i, j) -= data[i][j];
+                }
+            }return R;
+        }return R;
+    }
+
+    Matrix operator*(Matrix R) 
+    {
+        if (b == R.a) {
+            Matrix temp(a, R.b);
+            for (int i = 0; i < a; i++) {
+                for (int j = 0; j < R.b; j++) {
+                    for (int k = 0; k < a; k++) {
+                        temp(i, j) += data[i][k] * R(k, j);
+                    }
+                }
+            } return temp;
+        }
+    }
+
+    ~Matrix()//деструктор функции
+    {
+        for (int i = 0; i < rows; i++)
+        {
+            free(data[i]);
+        }
+        free(data);
+    }
+
+    
+};
+
+ostream& operator << (ostream& os, Matrix data)//перегрузка
+{
+    for (int i = 0; i < data.a; i++)
+    {
+        for (int j = 0; j < data.b; j++)
+        {
+            //os << data(i, j);
+            os << setw(10) << data(i, j) << endl;
+        }
+    }
+    return os;
+}
+
+template <typename Mas>
+int Proverka()
+{
+    cin >> f, t;
+    if (int i = 0; i < lenght; i++)
+    {
+
+    }
+}
+
+int main()
+{
+
+
+    Matrix matrix1(5, 5);
+    Matrix matrix2(5, 5);
+    Matrix mat3 = matrix1 + matrix2;
+    matrix.Rand();
+
+    Proverka()
+
+    //cout << matrix;
+    return 0;
+}
